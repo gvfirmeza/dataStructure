@@ -2,6 +2,16 @@ package main
 
 import "fmt"
 
+func calculaMedia(nums ...float64) float64 {
+	total := 0.0
+	quantidade := 0
+	for i := 0; i < len(nums); i++ {
+		total += nums[i]
+		quantidade++
+	}
+	return total / float64(quantidade)
+}
+
 func verificaParidade(num int) string {
 	if num%2 == 0 {
 		return "Par"
@@ -22,7 +32,8 @@ func converteCelsiusParaFahrenheit(celsius float64) float64 {
 }
 
 func main() {
+	fmt.Println(calculaMedia(8,5.4,7))
 	fmt.Println(verificaParidade(7))
-	fmt.Println(minhaPotencia(5,8))
+	fmt.Println(minhaPotencia(4,2))
 	fmt.Println(converteCelsiusParaFahrenheit(32))
 }
