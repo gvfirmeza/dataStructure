@@ -3,15 +3,15 @@ package main
 import "fmt"
 
 type Contato struct {
-	nome  string
-	email string
+    nome  string
+    email string
 }
 
 func (ctt *Contato) AlterarEmail(emailNovo string) {
-	ctt.email = emailNovo
+    ctt.email = emailNovo
 }
 
-func adicionarContato(ctt Contato, arrayContatos []*Contato) {
+func adicionarContato(ctt Contato, arrayContatos [5]*Contato) {
     for i, c := range arrayContatos {
         if c == nil {
             arrayContatos[i] = &ctt
@@ -19,10 +19,10 @@ func adicionarContato(ctt Contato, arrayContatos []*Contato) {
             return
         }
     }
-    fmt.Println("Não foi possível adicionar o contato pos já foram adicionados 5 contatos.")
+    fmt.Println("Não foi possível adicionar o contato pois já foram adicionados 5 contatos.")
 }
 
-func excluirContato(arrayContatos []*Contato) {
+func excluirContato(arrayContatos [5]*Contato) {
     for i := 4; i >= 0; i-- {
         if arrayContatos[i] != nil {
             arrayContatos[i] = nil
@@ -35,7 +35,7 @@ func excluirContato(arrayContatos []*Contato) {
 }
 
 func main() {
-    arrayContatos := make([]*Contato, 5)
+    var arrayContatos [5]*Contato
 
     for {
         var opcao int
@@ -48,7 +48,7 @@ func main() {
         switch opcao {
         case 1:
             var nome, email string
-			fmt.Println("\nDigite:")
+            fmt.Println("\nDigite:")
             fmt.Print("Nome do contato: ")
             fmt.Scanln(&nome)
             fmt.Print("E-mail do contato: ")
