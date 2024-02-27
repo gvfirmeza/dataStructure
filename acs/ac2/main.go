@@ -63,17 +63,17 @@ func main() {
 	// AC2.4
 	var largura, altura float64
 
-    fmt.Print("\nDigite a largura do retângulo: ")
-    fmt.Scanln(&largura)
+    	fmt.Print("\nDigite a largura do retângulo: ")
+    	fmt.Scanln(&largura)
 
-    fmt.Print("\nDigite a altura do retângulo: ")
-    fmt.Scanln(&altura)
+    	fmt.Print("\nDigite a altura do retângulo: ")
+    	fmt.Scanln(&altura)
 
-    retangulo := geometria.Retangulo{Largura: largura, Altura: altura}
+    	retangulo := geometria.Retangulo{Largura: largura, Altura: altura}
 
-    area := retangulo.Area()
-    perimetro := retangulo.Perimetro()
+   	area := retangulo.Area()
+    	perimetro := retangulo.Perimetro()
 
-    fmt.Println("\nA área do retângulo é", area)
-    fmt.Println("\nO perímetro do retângulo é", perimetro)
+    	fmt.Println("\nA área do retângulo é", area)
+    	fmt.Println("\nO perímetro do retângulo é", perimetro)
 }
