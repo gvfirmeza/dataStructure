@@ -1,72 +1,55 @@
 package main
 
-import "fmt"
-
-type fracao struct {
-	num int
-	den int
-}
-
-func adicionar(f1, f2 fracao) fracao {
-	return fracao{num: f1.num*f2.den + f2.num*f1.den, den: f1.den * f2.den}
-}
-
-func subtrair(f1, f2 fracao) fracao {
-	return fracao{num: f1.num*f2.den - f2.num*f1.den, den: f1.den * f2.den}
-}
-
-func multiplicar(f1, f2 fracao) fracao {
-	return fracao{num: f1.num * f2.num, den: f1.den * f2.den}
-}
-
-func dividir(f1, f2 fracao) fracao {
-	return fracao{num: f1.num * f2.den, den: f2.num * f1.den}
-}
+import (
+  "fmt"
+)
 
 func mdc(a, b int) int {
-	if b == 0 {
-		return a
-	}
-	return mdc(b, a%b)
+  for b != 0 {
+    a, b = b, a%b
+  }
+  return a
 }
 
-func simplificar(f fracao) fracao {
-	if f.den == 0 {
-		fmt.Println("Error: Division by zero")
-		return fracao{num: 0, den: 1}
-	}
-
-	mdc := mdc(f.num, f.den)
-	if f.num < 0 {
-		mdc = -mdc
-	}
-	return fracao{num: f.num / mdc, den: f.den / mdc}
+func simplificar(numerador, denominador int) (int, int) {
+  divisor := mdc(numerador, denominador)
+  return numerador / divisor, denominador / divisor
 }
 
+func calcular(numerador1, denominador1, numerador2, denominador2 int, operacao string) (int, int, error) {
+  switch operacao {
+  case "+":
+    return numerador1*denominador2 + numerador2*denominador1, denominador1 * denominador2, nil
+  case "-":
+    return numerador1*denominador2 - numerador2*denominador1, denominador1 * denominador2, nil
+  case "*":
+    return numerador1 * numerador2, denominador1 * denominador2, nil
+  case "/":
+    if denominador2 == 0 {
+      return 0, 0, fmt.Errorf("divisão por zero") // Error for division by zero
+    }
+    return numerador1 * denominador2, numerador2 * denominador1, nil
+  default:
+    return 0, 0, fmt.Errorf("operação inválida: %s", operacao) // Error for invalid operation
+  }
+}
 
 func main() {
-	var N int
-	fmt.Scan(&N)
+  var numeroCasos int
+  fmt.Scanf("%d", &numeroCasos)
 
-	for i := 0; i < N; i++ {
-		var f1, f2 fracao
-		var operator rune
-		fmt.Scan(&f1.num, &f1.den, &operator, &f2.num, &f2.den)
+  for i := 0; i < numeroCasos; i++ {
+    var numerador1, denominador1, numerador2, denominador2 int
+    var operacao string
+    fmt.Scanf("%d/%d %s %d/%d", &numerador1, &denominador1, &operacao, &numerador2, &denominador2)
 
-		var result fracao
-		switch operator {
-		case '+':
-			result = adicionar(f1, f2)
-		case '-':
-			result = subtrair(f1, f2)
-		case '*':
-			result = multiplicar(f1, f2)
-		case '/':
-			result = dividir(f1, f2)
-		}
+    resultadoNumerador, resultadoDenominador, err := calcular(numerador1, denominador1, numerador2, denominador2, operacao)
+    if err != nil {
+      fmt.Println("Erro:", err.Error())
+      continue
+    }
 
-		fmt.Printf("%d/%d = ", result.num, result.den)
-		result = simplificar(result)
-		fmt.Printf("%d/%d\n", result.num, result.den)
-	}
+    numeradorSimplificado, denominadorSimplificado := simplificar(resultadoNumerador, resultadoDenominador)
+    fmt.Printf("%d/%d %s %d/%d = %d/%d\n", numerador1, denominador1, operacao, numerador2, denominador2, numeradorSimplificado, denominadorSimplificado)
+  }
 }
