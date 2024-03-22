@@ -26,11 +26,11 @@ func calcular(numerador1, denominador1, numerador2, denominador2 int, operacao s
     return numerador1 * numerador2, denominador1 * denominador2, nil
   case "/":
     if denominador2 == 0 {
-      return 0, 0, fmt.Errorf("divisão por zero") // Error for division by zero
+      return 0, 0, fmt.Errorf("divisão por zero")
     }
     return numerador1 * denominador2, numerador2 * denominador1, nil
   default:
-    return 0, 0, fmt.Errorf("operação inválida: %s", operacao) // Error for invalid operation
+    return 0, 0, fmt.Errorf("operação inválida: %s", operacao)
   }
 }
 
