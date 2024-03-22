@@ -2,31 +2,29 @@ package main
 
 import (
 	"fmt"
-	"strings"
 )
 
 func main() {
-	var N int
-	var L, Q float64
-	var nomes string
+	
+	var numP int
+	var capacidadeGarrafa, capacidadeCuia float64
+	var listaNomes []string
 
-	fmt.Scanln(&N, &L, &Q)
-	fmt.Scanln()
-	nomes = lerNomes(N)
+	fmt.Scan(&numP, &capacidadeGarrafa, &capacidadeCuia)
 
-	participantes := strings.Fields(nomes)
-	aguaPorParticipante := Q / float64(len(participantes))
-	rico := participantes[len(participantes)-1]
-
-	fmt.Printf("%s %.1f\n", rico, aguaPorParticipante)
-}
-
-func lerNomes(N int) string {
-	var nomes string
-	for i := 0; i < N; i++ {
+	for i := 0; i < numP; i++ {
 		var nome string
 		fmt.Scan(&nome)
-		nomes += nome + " "
+		listaNomes = append(listaNomes, nome)
 	}
-	return nomes
+
+	indiceP := 0
+	for capacidadeGarrafa - capacidadeCuia >= 0 {
+		capacidadeGarrafa -= capacidadeCuia
+		indiceP++
+	}
+
+	indiceP = indiceP % numP
+	fmt.Printf("%s %.1f\n", listaNomes[indiceP], capacidadeGarrafa)
+	
 }
