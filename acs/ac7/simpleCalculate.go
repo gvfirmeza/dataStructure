@@ -16,5 +16,5 @@ func main() {
     fmt.Scanln(&d, &e, &f)
 	
     resultado := float64(b)*c + float64(e)*f
-	fmt.Printf("VALOR A PAGAR: R$ %.2f\n", resultado)
+    fmt.Printf("VALOR A PAGAR: R$ %.2f\n", resultado)
 }
