@@ -19,7 +19,7 @@ func main() {
 	}
 
 	indiceP := 0
-	for capacidadeGarrafa - capacidadeCuia >= 0 {
+	for capacidadeGarrafa - capacidadeCuia > 0 {
 		capacidadeGarrafa -= capacidadeCuia
 		indiceP++
 	}
