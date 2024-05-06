@@ -62,7 +62,7 @@ func main() {
     queue.enqueue(2)
     queue.enqueue(3)
 
-	fmt.Println("Elementos na fila:")
+    fmt.Println("Elementos na fila:")
     queue.traverse()
 
     fmt.Println("Elemento removido:", queue.dequeue())
@@ -70,9 +70,9 @@ func main() {
     fmt.Println("Elementos na fila:")
     queue.traverse()
 
-	queue.enqueue(4)
+    queue.enqueue(4)
 
-	fmt.Println("Elementos na fila:")
+    fmt.Println("Elementos na fila:")
     queue.traverse()
 
     fmt.Println("Elemento removido:", queue.dequeue())
